@@ -119,26 +119,28 @@ class Lexer():
 def parse(lexer: Lexer) -> List[Token]:
     ret = []
     for token in lexer:
+        if isinstance(token, LoopEnd):
+            return ret
+
         if isinstance(token, Loop):
             token.instructions = parse(lexer)
 
         ret.append(token)
 
-        if isinstance(token, LoopEnd):
-            return ret
-
     return ret
 
 
 def print_instruction(instruction: Token, indentation: int = 0) -> None:
-    if isinstance(instruction, LoopEnd):
-        indentation = max(0, indentation - 1)
-
     print(indentation * "\t" + str(instruction))
     if isinstance(instruction, Loop):
         for loop_instruction in instruction.instructions:
             print_instruction(loop_instruction, indentation + 1)
+        print(indentation * "\t" + "END;")
 
+
+def print_program(instructions: List[Token]):
+    for instruction in instructions:
+        print_instruction(instruction)
 
 def main():
     source_code = ""
@@ -154,6 +156,8 @@ def main():
             machine.write_register(index - 1, int(arg))
 
     machine.programm = parse(Lexer(source_code))
+
+    # print_program(machine.programm)
     print(f"x0 = {machine.run()}")
 
 
