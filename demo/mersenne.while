@@ -1,4 +1,4 @@
-# Berechnet die funktion f(n) := 1^n - 1
+# Berechnet die funktion f(n) := 2^n - 1
 
 WHILE (x1 > 0) DO
     x2 := x0 + 1;
