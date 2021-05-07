@@ -1,0 +1,11 @@
+# Berechnet die Funktion f N_0 -> N_0 mit
+#
+# f(n) :=
+#       | 1 falls die letzte Ziffer von n eine 9 ist
+#       | 0 sonst
+
+x1 := x1 + 1;
+WHILE (x1 > 0) DO
+    x0 := x1 - 9;
+    x1 := x1 - 10;
+END;
