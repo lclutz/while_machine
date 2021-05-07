@@ -1,0 +1,29 @@
+# Berechnet die Funktion f: N_0 -> N_0 mit
+#
+# f(n) :=
+#       | 1 falls n eine Primzahl ist
+#       | 0 sonst
+
+x2 := x1 - 1;
+WHILE (x2 > 0) DO
+    x0 := x2 + 0;
+    x2 := x2 - 1;
+END;
+x2 := x1 - 2;
+WHILE (x2 > 0) DO
+    x3 := x1 + 0;
+    x4 := x1 + 1;
+    WHILE (x3 > 0) DO
+        x5 := x2 + 1;
+        WHILE (x5 > 0) DO
+            x3 := x3 - 1;
+            x4 := x4 - 1;
+            x5 := x5 - 1;
+        END;
+    END;
+    WHILE (x4 > 0) DO
+        x0 := x4 - 1;
+        x4 := x4 - 1;
+    END;
+    x2 := x2 - 1;
+END;
