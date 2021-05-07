@@ -1,6 +1,6 @@
 # while_machine
 
-Interpreter für WHILE-Programme.
+Interpreter für [WHILE-Programme](https://de.wikipedia.org/wiki/WHILE-Programm).
 
 ## Benutzung
 
