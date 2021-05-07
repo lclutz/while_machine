@@ -1,0 +1,10 @@
+# Berechnet die funktion f(n) := 1^n - 1
+
+WHILE (x1 > 0) DO
+    x2 := x0 + 1;
+    WHILE (x2 > 0) DO
+        x0 := x0 + 1;
+        x2 := x2 - 1;
+    END;
+    x1 := x1 - 1;
+END;
