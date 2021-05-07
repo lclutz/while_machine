@@ -88,13 +88,13 @@ class Lexer():
         if self.source_code == "":
             raise StopIteration
 
-        match = re.match("^while\(x([0-9])+>0\)do", self.source_code)
+        match = re.match("^while\(x([0-9]+)>0\)do", self.source_code)
         if match != None:
             self.source_code = self.source_code[len(match[0]):]
             return Loop(int(match[1]), [])
 
         match = re.match(
-            "^x([0-9])+:=x([0-9])+([+,-])([0-9])+;", self.source_code)
+            "^x([0-9]+):=x([0-9]+)([+,-])([0-9]+);", self.source_code)
         if match != None and match[3] == '+':
             self.source_code = self.source_code[len(match[0]):]
             return Addition(int(match[1]),
@@ -157,7 +157,7 @@ def main():
 
     machine.programm = parse(Lexer(source_code))
 
-    # print_program(machine.programm)
+    #print_program(machine.programm)
     print(f"x0 = {machine.run()}")
 
 
