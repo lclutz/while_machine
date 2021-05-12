@@ -1,0 +1,8 @@
+WHILE (x1 > 0) DO
+    x3 := x2 + 0;
+    WHILE (x3 > 0) DO
+        x0 := x0 + 1;
+        x3 := x3 - 1;
+    END;
+    x1 := x1 - 1;
+END;
