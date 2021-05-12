@@ -18,5 +18,10 @@ WHILE-Programme dürfen aus den folgenden elementaren Anweisungen bestehen
 - `xi := xj - c;`
 - `WHILE (xi > 0) DO ... END;`
 
+Dabei sind `i, j` und `c` natürliche Zahlen. Der Schleifenkörper der `WHILE`
+Anweisung kann belibig elementare Anweisungen enthalten. Am Ende steht das
+Ergebnis des Programmes in `x0`. Der Interpreter gibt den Wert in `x0` am Ende
+der Ausführung auf der Konsole aus.
+
 Zusätzlich sind bei diesem interpreter Kommentare mit führendem `#` erlaubt.
 (siehe [prime.while](./demo/prime.while) für ein Beispiel)
