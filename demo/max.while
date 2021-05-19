@@ -1,0 +1,14 @@
+# Berechnet die Funktion f: N_0 x N_0 -> N_0 mit
+#
+# f(m,n) := m falls m >= n
+#         | n falls m < n
+
+x0 := x2 + 0;
+WHILE(x2 > 0) DO
+    x2 := x2 - 1;
+    x1 := x1 - 1;
+END;
+WHILE(x1 > 0) DO
+    x0 := x0 + 1;
+    x1 := x1 - 1;
+END;
