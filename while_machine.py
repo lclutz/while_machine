@@ -76,10 +76,14 @@ class LoopEnd(Token):
 
 
 class Lexer():
+    loop_regex = re.compile(r"^while\(x(\d+)>0\)do")
+    assignment_regex = re.compile(r"^x(\d+):=x(\d+)([+,-])(\d+);")
+    loop_end_regex = re.compile(r"^end;")
+    
     def __init__(self, source_code: str) -> None:
         source_code = source_code.split('\n')
         source_code = filter(lambda l: l != "" and l[0] != '#', source_code)
-        self.source_code = re.sub("\s", "", "".join(source_code).lower())
+        self.source_code = re.sub(r"\s", "", "".join(source_code).lower())
 
     def __iter__(self):
         return self
@@ -88,13 +92,12 @@ class Lexer():
         if self.source_code == "":
             raise StopIteration
 
-        match = re.match("^while\(x([0-9]+)>0\)do", self.source_code)
+        match = Lexer.loop_regex.match(self.source_code)
         if match != None:
             self.source_code = self.source_code[len(match[0]):]
             return Loop(int(match[1]), [])
 
-        match = re.match(
-            "^x([0-9]+):=x([0-9]+)([+,-])([0-9]+);", self.source_code)
+        match = Lexer.assignment_regex.match(self.source_code)
         if match != None and match[3] == '+':
             self.source_code = self.source_code[len(match[0]):]
             return Addition(int(match[1]),
@@ -107,7 +110,7 @@ class Lexer():
                                int(match[2]),
                                int(match[4]))
 
-        if re.match("^end;", self.source_code) != None:
+        if Lexer.loop_end_regex.match(self.source_code) != None:
             self.source_code = self.source_code[4:]
             return LoopEnd()
 
