@@ -98,17 +98,13 @@ class Lexer():
             return Loop(int(match[1]), [])
 
         match = Lexer.assignment_regex.match(self.source_code)
-        if match != None and match[3] == '+':
+        if match != None:
             self.source_code = self.source_code[len(match[0]):]
-            return Addition(int(match[1]),
-                            int(match[2]),
-                            int(match[4]))
-
-        if match != None and match[3] == '-':
-            self.source_code = self.source_code[len(match[0]):]
-            return Subtraction(int(match[1]),
-                               int(match[2]),
-                               int(match[4]))
+            target, source, operator, constant = match.group(1, 2, 3, 4)
+            if operator == "+":
+                return Addition(int(target), int(source), int(constant))
+            elif operator == "-":
+                return Subtraction(int(target), int(source), int(constant))
 
         if Lexer.loop_end_regex.match(self.source_code) != None:
             self.source_code = self.source_code[4:]
